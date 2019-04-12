@@ -1,0 +1,5 @@
+fake_useragent==0.1.11
+PyUserInput==0.1.11
+requests==2.18.4
+PyQt5==5.12.1
+pymouse==1.0
