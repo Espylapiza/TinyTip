@@ -2,6 +2,8 @@
 
 linux 划词翻译
 
+![](screenshots/screenshot.png)
+
 确保已经安装`xclip`
 
 ```shell

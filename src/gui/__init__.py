@@ -2,7 +2,7 @@ from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel
 
 
-def show_tip(text, x, y):
+def show_tip(text, x, y, time):
     app = QApplication([])
 
     label = QLabel(text)
@@ -16,7 +16,7 @@ def show_tip(text, x, y):
 
     timer = QTimer()
     timer.timeout.connect(operate)
-    timer.start(3000)
+    timer.start(time)
 
     window = QWidget()
     window.setWindowFlags(Qt.ToolTip)
