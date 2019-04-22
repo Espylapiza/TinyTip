@@ -2,34 +2,33 @@
 # -*- coding: utf-8 -*-
 
 import subprocess
-from translation.bing import get_translation
+from translators.Bing import Bing
 from gui import show_tip
 from pymouse import PyMouse
-
-# import pymouse.x11.PyMouse
-
-retry_times = 3
+from textwrap import wrap
 
 
-text = subprocess.check_output(["xclip", "-o"])
-text = text.strip()
+def translate(text):
+    print(bing.get_translation(text))
 
 
-for _ in range(retry_times):
-    text = get_translation(text)
-    if text is not None:
-        break
+if __name__ == "__main__":
+    bing = Bing()
+    retry_times = 3
 
-t = max(3, len(text) // 4) * 1000
+    text = subprocess.check_output(["xclip", "-o"])
+    text = text.strip()
 
-text_lines = ""
+    for _ in range(retry_times):
+        translation = bing.translate(text)
+        if translation is not None:
+            break
 
-for i in range(len(text)):
-    text_lines += text[i]
-    if (i + 1) % 25 == 0:
-        text_lines += "\n"
+    if translation is None:
+        translation = str(text, "utf-8")
 
+    translation = "\n".join(wrap(translation, 25))
 
-if text is not None:
+    show_time = max(3, len(translation) // 6) * 1000
     x, y = PyMouse().position()
-    show_tip(text_lines, x, y, t)
+    show_tip(translation, x, y, show_time)

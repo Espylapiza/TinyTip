@@ -15,6 +15,6 @@ $ python3 src/main.py
 ### To Do List
 
 - [ ] 窗口位置调整
-- [ ] 超时提示
+- [X] 超时提示
 - [ ] command line
 - [ ] setup
