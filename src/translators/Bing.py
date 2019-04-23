@@ -13,7 +13,7 @@ class Bing(object):
         }
         return headers
 
-    def __init__(self, lang_from="en", lang_to="zh"):
+    def __init__(self, lang_from, lang_to):
         self.lang_from = lang_from
         self.lang_to = lang_to
         self.sess = requests.Session()

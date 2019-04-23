@@ -6,18 +6,26 @@ from translators.Bing import Bing
 from gui import show_tip
 from pymouse import PyMouse
 from textwrap import wrap
+from polyglot.detect import Detector
 
-
-def translate(text):
-    print(bing.get_translation(text))
-
+min_time = 2
+max_time = 30
+lang_to = "zh"
+retry_times = 3
 
 if __name__ == "__main__":
-    bing = Bing()
-    retry_times = 3
+    text = str(subprocess.check_output(["xclip", "-o"]).strip(), "utf-8")
+    print(text)
 
-    text = subprocess.check_output(["xclip", "-o"])
-    text = text.strip()
+    if len(text) == 0:
+        exit(0)
+
+    try:
+        lang_from = Detector(text).languages[0].code
+    except Exception:
+        exit(0)
+
+    bing = Bing(lang_from=lang_from, lang_to=lang_to)
 
     for _ in range(retry_times):
         translation = bing.translate(text)
@@ -25,10 +33,10 @@ if __name__ == "__main__":
             break
 
     if translation is None:
-        translation = str(text, "utf-8")
+        translation = text
 
     translation = "\n".join(wrap(translation, 25))
 
-    show_time = max(3, len(translation) // 6) * 1000
+    show_time = min(max_time, max(min_time, len(translation) // 6)) * 1000
     x, y = PyMouse().position()
     show_tip(translation, x, y, show_time)
