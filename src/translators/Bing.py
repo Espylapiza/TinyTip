@@ -8,7 +8,7 @@ class Bing(object):
         headers = {
             "dnt": "1",
             "user-agent": fake_useragent.UserAgent().random,
-            "origin": "https://cn.bing.com",
+            "origin": "https://www.bing.com",
             "referer": "https://www.bing.com/translator",
         }
         return headers
@@ -19,7 +19,7 @@ class Bing(object):
         self.sess = requests.Session()
 
     def translate(self, text):
-        url = "https://cn.bing.com/ttranslate?&category=&IID=translator.5038.11"
+        url = "https://www.bing.com/ttranslate?&category=&IID=translator.5037.2"
 
         try:
             response = self.sess.post(
