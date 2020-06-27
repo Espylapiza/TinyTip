@@ -1,6 +1,7 @@
-import requests
 import json
+
 import fake_useragent
+import requests
 
 
 class Bing(object):
@@ -19,15 +20,16 @@ class Bing(object):
         self.sess = requests.Session()
 
     def translate(self, text):
-        url = "https://www.bing.com/ttranslate?&category=&IID=translator.5037.2"
+        url = "https://www.bing.com/ttranslate?&category=&IG=25E4ABDE972942CDA7210CF0846A9202&IID=translator.5037.2"
 
         try:
             response = self.sess.post(
                 url,
                 data={"text": text, "from": self.lang_from, "to": self.lang_to},
                 headers=self._random_headers(),
-                timeout=1,
+                timeout=2.5,
             )
+            print(response.request.headers)
         except Exception:
             return None
 
