@@ -6,7 +6,7 @@ A quick translator for linux.
 
 ## Installation
 
-Install requirements
+Install the requirements
 
 ```shell
 sudo apt install xclip
