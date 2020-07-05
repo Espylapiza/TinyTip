@@ -17,7 +17,7 @@ min_time = 2
 max_time = 30
 lang_to = "zh-CN"
 retry_times = 2
-max_width = 25
+max_width = 30
 words_per_sec = 8
 
 
@@ -37,8 +37,8 @@ if __name__ == "__main__":
 
     try:
         lang_from = Detector("what " + text).languages[0].code
-    except Exception:
-        show("unknown error")
+    except Exception as e:
+        show("Failed to detect the language.")
         sys.exit(0)
 
     for _ in range(retry_times):
@@ -49,8 +49,6 @@ if __name__ == "__main__":
             break
 
     if translation is None:
-        print(123)
         show(text)
     else:
-        print(456)
         show(translation)

@@ -1,19 +1,21 @@
 # TinyTip
 
-linux 划词翻译
+A quick translator for linux.
 
 ![](screenshots/screenshot.png)
 
-确保已经安装`xclip`
+## Installation
+
+Install requirements
 
 ```shell
-$ python3 src/main.py
+sudo apt install xclip
+pip3 install -r requirements.txt
 ```
 
----
+To translate a text, select it and run
 
-### To Do List
-
-- [ ] 窗口位置调整
-- [ ] command line
-- [ ] setup
+```shell
+python3 src/translateit.py
+```
+You can set it as a shortcut key.
